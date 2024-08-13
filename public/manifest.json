@@ -1,0 +1,30 @@
+{
+  "short_name": "Donatuz",
+  "name": "Donatuz",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "100x100",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "favicon.ico",
+      "sizes": "100x100",
+      "type": "image/png"
+    },
+    {
+      "src": "donatuz.png",
+      "sizes": "104x36",
+      "type": "image/png"
+    },
+    {
+      "src": "https://spruko.com/demo/noa/dist/assets/images/landing/web-designing.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#FFFFFF1A"
+}
