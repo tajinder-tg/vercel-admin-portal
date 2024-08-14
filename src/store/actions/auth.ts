@@ -40,14 +40,18 @@ export const loginAttempt = (data: any) => async (dispatch: any) => {
       });
       dispatch(loginSuccess(response?.data));
     } else {
-      toast.error(response?.data?.message, {
-        duration: 2000,
-        style: {
-          borderRadius: "10px",
-          background: "#333",
-          color: "#fff",
-        },
-      });
+      toast.error(
+        response?.data?.message ??
+          "Internal Server error, please try after sometime!",
+        {
+          duration: 2000,
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        }
+      );
       dispatch(loginError(response));
     }
   } catch (ex: any) {

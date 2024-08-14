@@ -3,9 +3,7 @@ import CryptoJS from "crypto-js";
 import authConfig from "./authConfig";
 const cryptoSecret = "ZG9uYXR1egM==";
 export const constants = {
-  apiBaseUrl:
-    process.env.NEXT_PUBLIC_API_BASE_URL 
-    
+  apiBaseUrl: process.env.NEXT_PUBLIC_API_BASE_URL,
 };
 export function Encrypt(values: any) {
   const encJson = CryptoJS.AES.encrypt(
@@ -33,7 +31,6 @@ export function Decrypt(values: string | null) {
   }
 }
 export const setCurrentUser = (data: any) => {
-  console.log(data, "data");
   let encryptedToken = Encrypt(data?.token);
   localStorage.setItem(authConfig.storageTokenKeyName, encryptedToken);
 };

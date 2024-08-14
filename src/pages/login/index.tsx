@@ -47,8 +47,7 @@ const Login = () => {
         <div className="flex items-center justify-center flex-col md:min-w-[546px] p-6 md:bg-[#FFFFFF1A] rounded-3">
           <Image src={Logo} alt="Logo" className="clear-image" />
           <p className="text-5 break-all my-6 text-center">
-            Your community awaits. Join Donatuz <br />
-            and connect with your tribe.
+            Sign in and manage the app from admin panel
           </p>
           <form onSubmit={formik.handleSubmit}>
             <input
@@ -100,7 +99,7 @@ const Login = () => {
               <button
                 type="submit"
                 disabled={authDetail.loading}
-                className="bg-primary rounded-3 py-1 md:w-[250px] sx: w-full mt-4 text-5 font-medium 2xl:text-4 lg:text-3-75 3xl:text-5"
+                className="bg-primary rounded-3 py-2 md:min-w-[400px] sx: w-full mt-4 text-5 font-medium 2xl:text-4 lg:text-3-75 3xl:text-5"
               >
                 {authDetail.loading ? <ButtonSpinnerLoader /> : "Login"}
               </button>

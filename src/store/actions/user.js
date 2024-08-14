@@ -16,7 +16,7 @@ export const getUserDetailsAction = (payload) => async (dispatch) => {
   try {
     dispatch(getUserDetailInit());
     // const EncryptedPayload=Encrypt(payload)
-    const response = await get("user/detail", payload);
+    const response = await get(ApiUrl.getUserDetail, payload);
     const filteredResponse = CheckResponse(response);
     if (filteredResponse?.success) {
       dispatch(getUserDetailSuccess(filteredResponse?.data?.data));
@@ -39,7 +39,7 @@ export const getUserListAction = (payload) => async (dispatch) => {
   try {
     dispatch(getUserListInit());
     // const EncryptedPayload=Encrypt(payload)
-    const response = await get("user/all", payload);
+    const response = await get(ApiUrl.getUserList, payload);
     const filteredResponse = CheckResponse(response);
     if (filteredResponse?.success) {
       dispatch(getUserListSuccess(filteredResponse?.data?.data));
@@ -84,7 +84,7 @@ export const updateUserStateAction = (payload) => async (dispatch) => {
       });
     }
   } catch (error) {
-    toast.error(error.message, {
+    toast.error(error?.message, {
       duration: 2000,
       style: {
         borderRadius: "10px",
