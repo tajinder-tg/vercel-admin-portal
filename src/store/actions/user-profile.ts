@@ -1,51 +1,45 @@
 import { ApiUrl } from "src/Api";
 import { CheckResponse } from "src/utils/CheckResponse";
 import {
-  constants,
+  get,
   postImage,
-  postWithoutToken,
   removeTempUser,
   setCurrentUser,
 } from "src/utils/Constant";
 import {
+  getUserProfileError,
+  getUserProfileInit,
+  getUserProfileSuccess,
   uploadImageError,
   uploadImageInit,
   uploadImageSuccess,
-  uploadUserProfileError,
-  uploadUserProfileInit,
-  uploadUserProfileSuccess,
 } from "../reducers/userProfile";
 
-export const uploadProfile = (data: any) => async (dispatch: any) => {
+export const getUserProfile = (params?: any) => async (dispatch: any) => {
   try {
-    dispatch(uploadImageInit());
-    const res = await postImage(ApiUrl.FileUpload, data);
+    dispatch(getUserProfileInit());
+    const res = await get(ApiUrl.getAdminDetail, params);
     const response = await CheckResponse(res);
     if (response.success) {
-      dispatch(uploadImageSuccess(response?.data));
-      return response?.data;
+      dispatch(getUserProfileSuccess(response?.data));
     } else {
-      dispatch(uploadImageError(response));
+      dispatch(getUserProfileError(response));
     }
   } catch (ex) {
     console.log(ex);
   }
 };
-
-export const postUserProfile = (data: any) => async (dispatch: any) => {
+export const uploadProfile = (data: any) => async (dispatch: any) => {
   try {
-    dispatch(uploadUserProfileInit());
-    const res = await postWithoutToken(
-      `${constants.apiBaseUrl}${ApiUrl.register}`,
-      data
-    );
+    dispatch(uploadImageInit());
+    const res = await postImage(ApiUrl.FileUpload, data);
     const response = await CheckResponse(res);
+
     if (response.success) {
-      removeTempUser();
-      setCurrentUser(response?.data?.data);
-      dispatch(uploadUserProfileSuccess(response?.data));
+      dispatch(uploadImageSuccess(response?.data));
+      return response?.data;
     } else {
-      dispatch(uploadUserProfileError(response));
+      dispatch(uploadImageError(response));
     }
   } catch (ex) {
     console.log(ex);

@@ -67,7 +67,7 @@ const Login = () => {
             {formik.touched.email && formik.errors.email && (
               <p className="text-red-500 text-sm">{formik.errors.email}</p>
             )}
-            <div className="my-5 relative">
+            <div className="mt-5 relative">
               <input
                 autoComplete="off"
                 name="password"
@@ -95,7 +95,7 @@ const Login = () => {
             {formik.touched.password && formik.errors.password && (
               <p className="text-red-500 text-sm">{formik.errors.password}</p>
             )}
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center mt-5">
               <button
                 type="submit"
                 disabled={authDetail.loading}

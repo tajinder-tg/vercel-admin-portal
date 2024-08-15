@@ -31,6 +31,7 @@ export function Decrypt(values: string | null) {
   }
 }
 export const setCurrentUser = (data: any) => {
+  console.log(data, "data");
   let encryptedToken = Encrypt(data?.token);
   localStorage.setItem(authConfig.storageTokenKeyName, encryptedToken);
 };
@@ -70,6 +71,7 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   async (config) => {
     const token = getCurrentUser();
+
     const tempToken = getTempUser();
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;

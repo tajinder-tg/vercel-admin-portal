@@ -6,7 +6,9 @@ export const ApiUrl = {
   addInterest: "interest/add",
   editInterest: "interest/update",
   login: "admin/login",
-  creatorRequest:'creator/request',
-  getUserList:"user/all",
-  getUserDetail:"user/detail"
+  creatorRequest: "creator/request",
+  getUserList: "user/all",
+  getUserDetail: "user/detail",
+  getCreatorRequest: "creator/request-list",
+  getAdminDetail: "admin/detail",
 };

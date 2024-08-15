@@ -60,7 +60,7 @@ export const getUserListAction = (payload) => async (dispatch) => {
 
 export const updateUserStateAction = (payload) => async (dispatch) => {
   try {
-    const response = await put(ApiUrl.creatorRequest, payload);
+    const response = await post(ApiUrl.creatorRequest, payload);
     if (
       response?.data?.status_code == 200 ||
       response?.data?.status_code == 201

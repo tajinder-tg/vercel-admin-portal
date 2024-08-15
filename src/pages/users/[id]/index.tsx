@@ -3,15 +3,16 @@ import Image from "src/components/Image/image";
 import MediaOne from "src/assets/media-example1.png";
 import creatorProfileCover from "src/assets/banner.png";
 import ProfileIcon from "src/assets/svg/profiledemo.svg";
-import swal from 'sweetalert'
+import swal from "sweetalert";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserDetailsAction, updateUserStateAction } from "src/store/actions/user";
+import { getUserDetailsAction } from "src/store/actions/user";
 import { useRouter } from "next/router";
 import { Decrypt } from "src/utils/Constant";
+import { updateUserStateAction } from "src/store/actions/creatorRequest";
 
 const Index = () => {
-  const dispatch=useDispatch()
-  const{userDetails}=useSelector((state:any)=>state.user)
+  const dispatch = useDispatch();
+  const { userDetails } = useSelector((state: any) => state.user);
   const router = useRouter();
   const { id }: any = router.query;
   const userSubscriptionsData = [
@@ -54,51 +55,49 @@ const Index = () => {
 
   const updateStatus = (value: number) => {
     swal({
-      text: `Are you sure you want to ${value == 3 ? 'Accept' : 'Reject'} this User as Creator?`,
-      icon: 'warning',
-      buttons: ['No', 'Yes'],
-      dangerMode: false
-    }).then(async willDelete => {
+      text: `Are you sure you want to ${value == 3 ? "Accept" : "Reject"} this User as Creator?`,
+      icon: "warning",
+      buttons: ["No", "Yes"],
+      dangerMode: false,
+    }).then(async (willDelete) => {
       if (willDelete) {
-        let response: any = ''
+        let response: any = "";
         if (!response) {
           swal({
-            text: 'Plase Wait!',
-            icon: 'warning',
+            text: "Plase Wait!",
+            icon: "warning",
             closeOnClickOutside: false,
             closeOnEsc: false,
-            buttons: [''],
-            dangerMode: true
-          })
+            buttons: [""],
+            dangerMode: true,
+          });
         }
-        let payload={
-          user_id:userDetails?.id,
-          status:value
-        }
-         response = await dispatch(updateUserStateAction(payload))
+        let payload = {
+          user_id: userDetails?.id,
+          status: value,
+        };
+        response = await dispatch(updateUserStateAction(payload));
         if (!response) {
           swal(`Something went wrong!`, {
-            icon: 'error'
-          })
-          return
+            icon: "error",
+          });
+          return;
         }
-        swal(`${value == 3 ? 'Accepted' : 'Rejected'} successfully`, {
-          icon: 'success'
-        })
+        swal(`${value == 3 ? "Accepted" : "Rejected"} successfully`, {
+          icon: "success",
+        });
       }
-    })
-  }
+    });
+  };
 
-  useEffect(()=>{
-    if(id){
-      let payload={
-        user_id:Decrypt(id)
-      }
-      dispatch(getUserDetailsAction(payload))
+  useEffect(() => {
+    if (id) {
+      let payload = {
+        user_id: Decrypt(id),
+      };
+      dispatch(getUserDetailsAction(payload));
     }
-
-  },[id])
-
+  }, [id]);
 
   return (
     <div>
@@ -127,7 +126,7 @@ const Index = () => {
 
                 <div>
                   <h1 className="font-bold text-5 md:text-7 text-center text-white leading-natural -tracking-0-6 w-full">
-                   {userDetails?.name}
+                    {userDetails?.name}
                   </h1>
                   <h2 className="font-medium text-4 md:text-4-5 text-center text-white leading-natural -tracking-0-6 w-full">
                     @AbigailLarson123
@@ -137,7 +136,7 @@ const Index = () => {
                 <div className="flex justify-around w-full mt-3 items-center">
                   <div className="flex flex-col items-center">
                     <span className="text-white text-center font-bold text-5">
-                    {userDetails?.total_post}
+                      {userDetails?.total_post}
                     </span>
                     <span className="text-white text-center  text-4-5">
                       Posts
@@ -145,7 +144,7 @@ const Index = () => {
                   </div>
                   <div className="flex flex-col items-center ml-3">
                     <span className="text-white text-center font-bold text-5">
-                    {userDetails?.total_subscribers}
+                      {userDetails?.total_subscribers}
                     </span>
                     <span className="text-white text-center  text-4-5">
                       Subscribers
@@ -163,26 +162,6 @@ const Index = () => {
                 <div className="mt-2 text-white text-center px-4 text-4-5">
                   <p>Important to be nice 😊</p>
                 </div>
-                {userDetails?.creator_status==6 && 
-                <div className=" w-full flex justify-center xs:gap-3 lg:gap-5  md:static xs:px-3 md:px-0 md:mt-2">
-                <button
-                  type="button"
-                  className=" text-white bg-[#333334]  font-bold rounded-lg text-sm xs:px-3 md:px-5 py-2.5 mb-2 xs:w-[35%] md:w-[150px]"
-                  onClick={()=>updateStatus(5)}
-                >
-                  {" "}
-                  Reject
-                </button>
-                <button
-                  type="button"
-                  className=" text-white bg-purple font-bold rounded-lg text-sm xs:px-3 md:px-5  py-2.5 mb-2 xs:w-[35%] md:w-[150px] "
-                  onClick={()=>updateStatus(3)}
-                >
-                  Accept
-                </button>
-              </div>
-                }
-                
               </div>
             </div>
           </div>

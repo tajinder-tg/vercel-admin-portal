@@ -1,16 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CloseIcon from "src/assets/svg/closeIcon.svg";
 import Image from "./Image/image";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { useDispatch, useSelector } from "react-redux";
-import { uploadProfile } from "src/store/actions/user-profile";
-import { IoClose } from "react-icons/io5";
-import { post, put } from "src/utils/Constant";
-import { ApiUrl } from "src/Api";
-import { getInterestList } from "src/store/actions/interest";
-import toast from "react-hot-toast";
-import { CheckResponse } from "src/utils/CheckResponse";
 
 const BanModal = ({ closeModal, isBanModal, selectedName }: any) => {
   return (
@@ -32,7 +22,7 @@ const BanModal = ({ closeModal, isBanModal, selectedName }: any) => {
           <button
             type="button"
             className=" text-white bg-[#333334]  font-bold rounded-lg text-sm px-5 py-2.5 s xs:w-[50%] 2xl:w-[140px] 3xl:w-[200px]"
-            onClick={()=>closeModal()}
+            onClick={() => closeModal()}
           >
             Cancel
           </button>
@@ -40,7 +30,7 @@ const BanModal = ({ closeModal, isBanModal, selectedName }: any) => {
             form="my-form"
             type="submit"
             className=" text-white bg-purple font-bold rounded-lg text-sm px-5 py-2.5 mr-3 xs:w-[50%] 2xl:w-[140px] 3xl:w-[200px]"
-            onClick={()=>closeModal()}
+            onClick={() => closeModal()}
           >
             Ban User
           </button>

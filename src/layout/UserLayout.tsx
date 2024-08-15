@@ -14,6 +14,8 @@ import DesktopHeader from "./component/DesktopHeader";
 import { useRouter } from "next/router";
 import Image from "src/components/Image/image";
 import { getCurrentUser } from "src/utils/Constant";
+import { useDispatch } from "react-redux";
+import { getUserProfile } from "src/store/actions/user-profile";
 
 const navigation = [
   {
@@ -57,23 +59,21 @@ const currentUser = {
 const UserLayout = ({ children }: any) => {
   const [isHeight, setIsHeight] = useState(false);
   const token = getCurrentUser();
-  // useEffect(() => {
-  //   if (!token) {
-  //     router.push(ROUTES.HOME);
-  //   }
-  // }, []);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (!token) {
+      router.push(ROUTES.HOME);
+    } else {
+      dispatch(getUserProfile());
+    }
+  }, []);
   const router = useRouter();
   const { pathname } = router;
   let segments = pathname.split("/");
   const isDesktop = useMediaQuery({ minWidth: 768 });
   let hasReplacedWithName = false;
   const capitalizedPathname = segments.map((segment, index) => {
-    const contentRoutes = [
-      ROUTES.CONTENTAUCTION,
-      ROUTES.CONTENTPOLL,
-      ROUTES.CONTENTPOST,
-      ROUTES.CONTENTCOLLECTION,
-    ];
+    const contentRoutes = [ROUTES.CREATOR_REQUEST];
 
     if (
       segment.length > 0 &&
@@ -84,7 +84,7 @@ const UserLayout = ({ children }: any) => {
       return segment.charAt(0).toUpperCase() + segment.slice(1);
     } else if (contentRoutes.includes(pathname) && !hasReplacedWithName) {
       hasReplacedWithName = true;
-      return currentUser.name;
+      return "Creator Request";
     }
   });
   useEffect(() => {
