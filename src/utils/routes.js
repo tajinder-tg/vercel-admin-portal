@@ -26,4 +26,5 @@ export const ROUTES = {
   CONTENTCOLLECTION: "/content-collection",
   CREATOR: "/creators",
   USER: "/users",
+  CREATOR_REQUEST: "/creator-request",
 };

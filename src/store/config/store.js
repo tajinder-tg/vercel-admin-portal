@@ -8,6 +8,7 @@ import layout from "../reducers/layout";
 import userProfile from "../reducers/userProfile";
 import interest from "../reducers/interest";
 import user from "../reducers/user";
+import creatorRequest from "../reducers/creatorRequest";
 const store = configureStore({
   reducer: {
     auth,
@@ -18,6 +19,7 @@ const store = configureStore({
     userProfile,
     interest,
     user,
+    creatorRequest,
   },
 });
 

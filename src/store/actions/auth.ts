@@ -29,6 +29,7 @@ export const loginAttempt = (data: any) => async (dispatch: any) => {
       response?.data?.status_code == 200 ||
       response?.data?.status_code == 200
     ) {
+      console.log(response.data?.data, "response.data?.data");
       setCurrentUser(response.data?.data);
       toast.success(response?.data?.message, {
         duration: 2000,

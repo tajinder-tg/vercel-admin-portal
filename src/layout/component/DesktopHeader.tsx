@@ -1,12 +1,14 @@
 // src/components/common/DesktopHeader.js
 import { useRouter } from "next/router";
 import React from "react";
+import { useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 import searchIcon from "src/assets/svg/search.svg";
 import unknownProfile from "src/assets/unknown-person.png";
 import Image from "src/components/Image/image";
 const DesktopHeader = ({ title, currentUser }: any) => {
   const isDesktop = useMediaQuery({ minWidth: 768 });
+  const { userProfileInfo } = useSelector((state: any) => state.userProfile);
   const router = useRouter();
   const handleViewProfile = () => {
     // router.push("/profile/0/details");
@@ -24,18 +26,15 @@ const DesktopHeader = ({ title, currentUser }: any) => {
         <h5 className="text-5 font-bold text-white mt-2">{title}</h5>
         <div className="flex items-center md:gap-2 lg:gap-5">
           <div className="flex  gap-2">
-            <div className="font-medium dark:text-white">
+            <div className="font-medium dark:text-white flex items-center justify-center">
               <p className="font-bold text-white md:text-[12px] lg:text-[13px]">
-                {currentUser.name}
-              </p>
-              <p className="font-bold text-white md:text-[11px] lg:text-[12px]">
-                5.2M Followers
+                {userProfileInfo?.name}
               </p>
             </div>
             <div className="cursor-pointer" onClick={handleViewProfile}>
               <Image
                 className="w-10 h-10 p-1 rounded-full ring-2 ring-purple dark:ring-purple"
-                src={currentUser.profilePicture}
+                src={userProfileInfo?.profile_pic ?? currentUser.profilePicture}
                 alt=""
               />
             </div>

@@ -12,6 +12,20 @@ export const userProfileSlice = createSlice({
   name: "userProfile",
   initialState,
   reducers: {
+    getUserProfileInit: (state) => {
+      state.isUserProfile = true;
+    },
+    getUserProfileSuccess: (state, action) => {
+      state.isUserProfile = false;
+      state.success = true;
+      state.userProfileInfo = action?.payload?.data;
+    },
+    getUserProfileError: (state, action) => {
+      state.isUserProfile = false;
+      state.success = false;
+      state.userProfileInfo = null;
+      state.error = action?.payload;
+    },
     uploadImageInit: (state) => {
       state.isUploadFile = true;
     },
@@ -31,30 +45,16 @@ export const userProfileSlice = createSlice({
       state.fileUrl = null;
       state.error = null;
     },
-    uploadUserProfileInit: (state) => {
-      state.isUserProfile = true;
-    },
-    uploadUserProfileSuccess: (state, action) => {
-      state.isUserProfile = false;
-      state.success = true;
-      state.userProfileInfo = action?.payload?.data;
-    },
-    uploadUserProfileError: (state, action) => {
-      state.isUserProfile = false;
-      state.success = false;
-      state.userProfileInfo = null;
-      state.error = action?.payload;
-    },
   },
 });
 
 export const {
-  uploadImageInit,
+  getUserProfileInit,
+  getUserProfileSuccess,
+  getUserProfileError,
   uploadImageSuccess,
+  uploadImageInit,
   uploadImageError,
-  uploadUserProfileInit,
-  uploadUserProfileError,
-  uploadUserProfileSuccess,
   removeUploadImage,
 } = userProfileSlice.actions;
 

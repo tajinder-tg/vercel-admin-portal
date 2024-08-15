@@ -95,7 +95,7 @@ const MenuItem = ({ iconPath, label, isSelected, onClick }: any) => (
     `}
     onClick={onClick}
   >
-    <Image src={iconPath} alt={label} className="h-[20px] w-[18px] mr-4" />
+    <Image src={iconPath} alt={label} className="mr-4" height={20} width={20} />
     <span className="text-white text-[18px] md:text-[15px] lg:text-[15px] xl:text-[16px] 2xl:text-[16px] 3xl:text-[17px] 4xl:text-[18px] ">
       {label}
     </span>
